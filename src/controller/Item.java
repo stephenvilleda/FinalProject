@@ -1,5 +1,5 @@
 package controller;
-
+// Item class
 public class Item {
     private int itemID;
     private String itemName;
