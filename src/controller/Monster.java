@@ -1,6 +1,6 @@
 package controller;
 
-public class Monster
+public class Monster extends Entity
 {
-
+    private String monsterName;
 }
