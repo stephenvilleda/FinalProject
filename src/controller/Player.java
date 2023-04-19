@@ -2,7 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
-public class Player extends Entity
+public class Player
 {
     private Room curRoom;
     private ArrayList<Item> inventory;
