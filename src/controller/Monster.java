@@ -18,10 +18,12 @@ public class Monster
         this.description = description;
     }
 
+    //<editor-fold desc="Getters & Setters">
     public int getMonsterID(){ return this.monsterID; }
     public void setMonsterID(int monsterID){ this.monsterID = monsterID; }
     public String getMonsterName(){ return this.monsterName; }
     public void setMonsterName(String monsterName){ this.monsterName = monsterName; }
     public String getMonsterDescription(){ return this.description; }
     public void setMonsterDescription(String description){ this.description = description; }
+    //</editor-fold>
 }

@@ -12,6 +12,18 @@ import java.util.ArrayList;
  */
 public class RoomDB
 {
+    private static RoomDB instance;
+
+    public static RoomDB getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new RoomDB();
+        }
+
+        return instance;
+    }
+
     /**
      * Method: getNextRoomID
      * Purpose: gets the next ID for a room

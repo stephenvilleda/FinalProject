@@ -13,4 +13,6 @@ public class Commands
     public Commands(){ this.player = new Player(); }
 
     public Player getPlayer(){ return this.player; }
+
+
 }

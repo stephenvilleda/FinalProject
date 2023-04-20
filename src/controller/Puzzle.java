@@ -13,8 +13,10 @@ public class Puzzle
         this.answer = answer;
     }
 
+    //<editor-fold desc="Getters & Setters">
     public String getPrompt(){ return this.prompt; }
     public void setPrompt(String prompt){ this.prompt = prompt; }
     public String getAnswer(){ return this.answer; }
     public void setAnswer(String answer){ this.answer = answer; }
+    //</editor-fold>
 }

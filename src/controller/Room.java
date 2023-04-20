@@ -1,5 +1,8 @@
 package controller;
 
+import model.RoomDB;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -12,6 +15,7 @@ public class Room
     private boolean visited;
     private ArrayList<Exit> exits;
 
+    //<editor-fold desc="Getters & Setters">
     public int getID() { return id; }
     public void setID(int id) { this.id = id; }
     public String getName() { return name; }
@@ -26,4 +30,17 @@ public class Room
     public Collection<Exit> getExits() { return exits; }
     public void setExits(ArrayList<Exit> exits) { this.exits = exits; }
     public void addExit(Exit exit) { this.exits.add(exit); }
+    //</editor-fold>
+
+    public Room getRoom(int id) throws SQLException, ClassNotFoundException
+    {
+        RoomDB rdb = RoomDB.getInstance();
+        return rdb.getRoom(id);
+    }
+
+    public ArrayList<Room> getAllRooms() throws SQLException, ClassNotFoundException
+    {
+        RoomDB rdb = RoomDB.getInstance();
+        return rdb.getAllRooms();
+    }
 }
