@@ -1,5 +1,6 @@
 package controller;
 
+import gameExceptions.GameException;
 import interfaces.IDisplay;
 import model.RoomDB;
 
@@ -15,6 +16,7 @@ public class Room implements IDisplay
     private ArrayList<Item> items;
     private boolean visited;
     private ArrayList<Exit> exits;
+    private RoomDB rdb;
 
     //<editor-fold desc="Getters & Setters">
     public int getID() { return id; }
@@ -35,7 +37,7 @@ public class Room implements IDisplay
 
     public Room getRoom(int id) throws SQLException, ClassNotFoundException
     {
-        RoomDB rdb = RoomDB.getInstance();
+        rdb = RoomDB.getInstance();
         return rdb.getRoom(id);
     }
 
@@ -66,4 +68,6 @@ public class Room implements IDisplay
             System.out.println(e.getDirection());
         }
     }
+
+    public Room retrieveByID(int id) throws GameException, SQLException, ClassNotFoundException { return rdb.getRoom(id); }
 }
