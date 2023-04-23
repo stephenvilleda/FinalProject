@@ -10,7 +10,8 @@ public class SQLiteDB extends DB
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public SQLiteDB() throws SQLException, ClassNotFoundException {
+    public SQLiteDB() throws SQLException, ClassNotFoundException
+    {
         //Build the connection String
         sJdbc = "jdbc:sqlite";
         sDriverName = "org.sqlite.JDBC";
@@ -25,7 +26,8 @@ public class SQLiteDB extends DB
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public SQLiteDB(String dbName) throws SQLException, ClassNotFoundException {
+    public SQLiteDB(String dbName) throws SQLException, ClassNotFoundException
+    {
         //Build the connection String
         sJdbc = "jdbc:sqlite";
         sDriverName = "org.sqlite.JDBC";
@@ -42,7 +44,8 @@ public class SQLiteDB extends DB
      * @throws SQLException
      * @return void
      */
-    public void close() throws SQLException {
+    public void close() throws SQLException
+    {
         conn.close();
     }
 }

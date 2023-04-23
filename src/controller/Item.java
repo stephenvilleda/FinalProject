@@ -1,30 +1,25 @@
 package controller;
-public class Item {
-    private int itemID;
-    private String itemName;
-    private String itemDescription;
 
-    public int getItemID() {
-        return this.itemID;
-    }
+import interfaces.IDisplay;
 
-    public void setItemID(int itemID) {
-        this.itemID = itemID;
-    }
+public class Item implements IDisplay
+{
+    private int id;
+    private int roomID;
+    private String name;
+    private String description;
 
-    public String getItemName() {
-        return this.itemName;
-    }
+    //<editor-fold desc="Getters & Setters">
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public int getRoomID() { return roomID; }
+    public void setRoomID(int roomID) { this.roomID = roomID; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    //</editor-fold>
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public String getItemDescription() {
-        return this.itemDescription;
-    }
-
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
+    @Override
+    public void display(){ System.out.println(name + " - " + description); }
 }
