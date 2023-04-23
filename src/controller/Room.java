@@ -1,12 +1,13 @@
 package controller;
 
+import interfaces.IDisplay;
 import model.RoomDB;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Room
+public class Room implements IDisplay
 {
     private int id;
     private String name;
@@ -42,5 +43,27 @@ public class Room
     {
         RoomDB rdb = RoomDB.getInstance();
         return rdb.getAllRooms();
+    }
+
+    @Override
+    public void display()
+    {
+        System.out.println(name + " - " + description);
+
+        if(visited)
+        {
+            System.out.println("You have already visited this area.");
+        }
+        else
+        {
+            System.out.println("This is your first time visiting this area");
+        }
+
+        System.out.println("There are " + exits.size() + " exits available. You can go: ");
+
+        for(Exit e : exits)
+        {
+            System.out.println(e.getDirection());
+        }
     }
 }

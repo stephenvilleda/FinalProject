@@ -1,6 +1,8 @@
 package controller;
 
-public class Item
+import interfaces.IDisplay;
+
+public class Item implements IDisplay
 {
     private int id;
     private int roomID;
@@ -17,4 +19,7 @@ public class Item
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
     //</editor-fold>
+
+    @Override
+    public void display(){ System.out.println(name + " - " + description); }
 }
