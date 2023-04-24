@@ -1,5 +1,6 @@
 package controller;
 
+import gameExceptions.GameException;
 import model.GameDBCreate;
 
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ public class CreateFilesController {
      * Purpose: Create the database for GameDB
      * @return void
      */
-    public void createFile() throws GameException{
+    public void createFile() throws GameException {
         try {
             GameDBCreate sdb = new GameDBCreate();
             sdb.buildTables();

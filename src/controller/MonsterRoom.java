@@ -1,5 +1,6 @@
 package controller;
 
+import gameExceptions.GameException;
 import model.MonsterRoomDB;
 
 import java.sql.SQLException;

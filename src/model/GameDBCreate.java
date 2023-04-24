@@ -1,6 +1,6 @@
 package model;
 
-import controller.GameException;
+import gameExceptions.GameException;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

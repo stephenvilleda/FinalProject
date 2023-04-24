@@ -1,5 +1,7 @@
 package controller;
 
+import gameExceptions.GameException;
+
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;

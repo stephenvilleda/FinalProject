@@ -1,6 +1,6 @@
 package model;
 
-import controller.GameException;
+import gameExceptions.GameException;
 import controller.MonsterRoom;
 
 import java.sql.ResultSet;
