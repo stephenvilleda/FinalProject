@@ -25,7 +25,7 @@ public class Commands
         // If the player enters the appropriate command or first letter of the command, return true
         return cmd.length() > 1 && cmd.equalsIgnoreCase(compare) || cmd.length() == 1 && letter.equalsIgnoreCase(String.valueOf(compare));
     }
-
+//
     public void move(String cmd) throws SQLException, ClassNotFoundException, GameException
     {
         for(Exit e : player.getCurRoom().getExits())
