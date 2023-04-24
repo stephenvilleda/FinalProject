@@ -18,7 +18,7 @@ public class Commands
 
     // Checks whether the player's command matches the string (compare)
     // Can be used for multiple situations if needed
-
+   //
     private boolean commandMatches(String cmd, String compare)
     {
         String letter = String.valueOf(cmd.charAt(0));
