@@ -1,27 +1,29 @@
 package controller;
 
-public class Monster {
+public class Monster
+{
+    private int monsterID;
     private String monsterName;
-    private String monsterDescription;
+    private String description;
 
-    public Monster(String monsterName, String monsterDescription) {
+    public Monster()
+    {
+
+    }
+
+    public Monster(int monsterID, String monsterName, String description)
+    {
+        this.monsterID = monsterID;
         this.monsterName = monsterName;
-        this.monsterDescription = monsterDescription;
+        this.description = description;
     }
 
-    public String getMonsterName() {
-        return monsterName;
-    }
-
-    public void setMonsterName(String monsterName) {
-        this.monsterName = monsterName;
-    }
-
-    public String getMonsterDescription() {
-        return monsterDescription;
-    }
-
-    public void setMonsterDescription(String monsterDescription) {
-        this.monsterDescription = monsterDescription;
-    }
+    //<editor-fold desc="Getters & Setters">
+    public int getMonsterID(){ return this.monsterID; }
+    public void setMonsterID(int monsterID){ this.monsterID = monsterID; }
+    public String getMonsterName(){ return this.monsterName; }
+    public void setMonsterName(String monsterName){ this.monsterName = monsterName; }
+    public String getMonsterDescription(){ return this.description; }
+    public void setMonsterDescription(String description){ this.description = description; }
+    //</editor-fold>
 }

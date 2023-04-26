@@ -1,179 +1,73 @@
 package controller;
 
 import gameExceptions.GameException;
+import interfaces.IDisplay;
+import model.RoomDB;
 
-public class Room<String> {
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
-    private int roomId;
-    private String roomName;
+public class Room implements IDisplay
+{
+    private int id;
+    private String name;
+    private String description;
+    private ArrayList<Item> items;
+    private boolean visited;
+    private ArrayList<Exit> exits;
+    private RoomDB rdb;
 
-    private String roomdescription;
+    //<editor-fold desc="Getters & Setters">
+    public int getID() { return id; }
+    public void setID(int id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    public ArrayList<Item> getItems() { return items; }
+    public void setItems(ArrayList<Item> items) { this.items = items; }
+    public void addItem(Item item) { items.add(item); }
+    public boolean hasVisited() { return visited; }
+    public void setVisited(boolean visited) { this.visited = visited; }
+    public Collection<Exit> getExits() { return exits; }
+    public void setExits(ArrayList<Exit> exits) { this.exits = exits; }
+    public void addExit(Exit exit) { this.exits.add(exit); }
+    //</editor-fold>
 
-    private ArrayList<interger> items;
-
-    private boolean roomvisited;
-
-
-    public Room() throws GameException {
-        roomId = 1;
-        roomName = "";
-        roomdescription = "";
+    public Room getRoom(int id) throws SQLException, ClassNotFoundException
+    {
+        rdb = RoomDB.getInstance();
+        return rdb.getRoom(id);
     }
 
-
-    public Room(int id) {
-        roomId = id;
+    public ArrayList<Room> getAllRooms() throws SQLException, ClassNotFoundException
+    {
+        RoomDB rdb = RoomDB.getInstance();
+        return rdb.getAllRooms();
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
+    @Override
+    public void display()
+    {
+        System.out.println(name + " - " + description);
 
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomName() {
-        this.roomName = roomName;
-    }
-
-    public String getRoomName() {
-        return this.roomName;
-    }
-
-    public void setRoomdescription(String roomdescription) {
-        this.roomdescription = roomdescription;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public ArrayList<Integer> getItems() {
-        return this.items;
-    }
-
-    public void setItems(ArrayList<Integer> items) {
-        this.items = items;
-    }
-
-    public boolean isRoomvisitedVisited() {
-        return this.roomvisited;
-    }
-
-    public void setRoomvisitedVisited(boolean roomvisited) {
-        this.roomvisited = roomvisited;
-    }
-
-
-    public <String> String display() throws GameException {
-        return buildDescription() + buildItems() + displayExits();
-    }
-
-    private String buildDescription() {
-        StringBuilder sb = new StringBuilder();
-        if (!isVisited())
-            if (roomID == 1)
-                sb.append("You find yourself in the ");
-            else
-                sb.append("You enter into into the ");
+        if(visited)
+        {
+            System.out.println("You have already visited this area.");
+        }
         else
-            sb.append("You return to the ");
-
-        sb.append(getRoomName()).append(".\n");
-        sb.append(getDescription());
-        return sb.toString();
-    }
-
-    private String buildItems() throws GameException {
-        StringBuilder sb = new StringBuilder();
-        if (items.isEmpty())
-            return "";
-        sb.append("\n").append("You notice");
-        int count = 1;
-        for (int i : items) {
-            if (items.size() != 1 && count == items.size())
-                sb.append(" and");
-
-            if ("AEIOUaeiou".indexOf(
-                    idb.getItem(i).getItemName().charAt(0)) != -1) //checks if the item starts with a vowel
-                sb.append(" an ");
-            else
-                sb.append(" a ");
-
-            sb.append(idb.getItem(i).getItemName());
-
-            if (items.size() != 1 && count != items.size())
-                sb.append(",");
-
-            count++;
+        {
+            System.out.println("This is your first time visiting this area");
         }
-        sb.append(" in this room.\n");
-        return sb.toString();
-    }
 
-    private String displayExits() {
-        ArrayList<Exit> exitList = exits.iterator().next();
-        if (exitList.isEmpty())
-            return "";
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n").append("You can go ");
-        int count = 1;
-        for (Exit exit : exitList) {
-            sb.append(exit.getDirection());
-            if (exitList.size() > 1 && count != exitList.size())
-                if (count < exitList.size() - 1)
-                    sb.append(", ");
-                else
-                    sb.append(", and ");
-            count++;
+        System.out.println("There are " + exits.size() + " exits available. You can go: ");
+
+        for(Exit e : exits)
+        {
+            System.out.println(e.getDirection());
         }
-        sb.append(".");
-        return sb.toString();
     }
 
-    public void dropItem(Item item) throws GameException {
-        items.add(item.getItemID());
-        updateRoom();
-    }
-
-    public void removeItem(Item item) throws GameException {
-        for (int j = 0; j < items.size(); j++)
-            if (idb.getItem(items.get(j)) == item) {
-                items.remove(j);
-                break;
-            }
-        updateRoom();
-    }
-
-    public void updateRoom() throws GameException {
-        RoomDB.getInstance().updateRoom(this);
-    }
-
-    public Room retrieveByID(int roomNum) throws GameException {
-        return rdb.getRoom(roomNum);
-    }
-
-    public int validDirection(String cmd) throws GameException {
-        for (ArrayList<Exit> exitList : exits)
-            for (Exit exit : exitList)
-                if (exit.getDirection().substring(0, 1).equalsIgnoreCase(cmd))
-                    return exit.getDestination();
-        throw new GameException();
-    }
-
-    @Override()
-    public String toString() {
-        return "Room{" +
-                "roomID=" + roomId +
-                ", name='" + roomName + '\'' +
-                ", description='" + roomdescription + '\'' +
-                ", items=" + items +
-                ", visited=" + roomvisited +
-                ", exits=" + exits +
-                '}';
-
-
-    }
-
+    public Room retrieveByID(int id) throws GameException, SQLException, ClassNotFoundException { return rdb.getRoom(id); }
 }
