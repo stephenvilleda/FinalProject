@@ -70,4 +70,7 @@ public class Room implements IDisplay
     }
 
     public Room retrieveByID(int id) throws GameException, SQLException, ClassNotFoundException { return rdb.getRoom(id); }
+
+    public void setRoomID(int roomNumber) {
+    }
 }

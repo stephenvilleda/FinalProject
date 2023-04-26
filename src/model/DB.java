@@ -10,8 +10,7 @@ import java.sql.Statement;
  * This class controls basic DB functionality
  * Purpose:Has Query and Update DB
  */
-abstract public class DB
-{
+abstract public class DB {
     protected String dbName = "Game.db";
     protected String sJdbc;
     protected String sDriverName;
@@ -27,8 +26,7 @@ abstract public class DB
      * @return ResultSet
      * @throws SQLException
      */
-    public ResultSet queryDB(String sql) throws SQLException
-    {
+    public ResultSet queryDB(String sql) throws SQLException {
         ResultSet rs = null;
         Statement stmt = conn.createStatement();
         stmt.setQueryTimeout(timeout);
@@ -43,8 +41,7 @@ abstract public class DB
      * @return boolean
      * @throws SQLException
      */
-    public boolean updateDB(String SQL) throws SQLException
-    {
+    public boolean updateDB(String SQL) throws SQLException {
         Statement stmt = conn.createStatement();
         boolean success = stmt.execute(SQL);
         return success;
@@ -56,8 +53,7 @@ abstract public class DB
      * @param table
      * @return int
      */
-    public int count(String table)
-    {
+    public int count(String table) {
         int cnt = 0;
         try {
             Statement stmt = conn.createStatement();
@@ -77,8 +73,7 @@ abstract public class DB
      * @param table
      * @return int
      */
-    public int getMaxValue(String columnName, String table)
-    {
+    public int getMaxValue(String columnName, String table) {
         int max = 0;
         try {
             Statement stmt = conn.createStatement();
@@ -91,4 +86,3 @@ abstract public class DB
         return max;
     }
 }
-
